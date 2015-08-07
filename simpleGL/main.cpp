@@ -1,22 +1,26 @@
 #include <iostream>
 #include <stdio.h>
-//#include <GL\freeglut.h>
+#include <GL\glew.h>
+#include <GL\freeglut.h>
+
 #include <fstream>
 #define EOL '\n'
 #define CAR_RETURN '\r'
 
-void readt()
+
+
+int main(int argc, char *argv[])
 {
-	char str[80];
+		char str[80];
 
 	char cmd;
 	float v1, v2, v3, v4;
 	FILE * pFile;
 
-	pFile = fopen("t.obj", "r");
+	fopen_s(&pFile,"t.obj", "r");
 
 	if (pFile == NULL)
-		return;
+		return 0;
 
 	unsigned int line_count = 0;
 	unsigned int face_count = 0;
@@ -37,8 +41,8 @@ void readt()
 	fseek(pFile, 0, SEEK_SET);
 	while (!feof(pFile))
 	{
-		fscanf(pFile, "%s %f %f %f %f", &cmd, &v1, &v2, &v3, &v4);
-		printf("%c %f %f %f %f\n", cmd, v1, v2, v3, v4);
+		fscanf(pFile, "%c %f %f %f %f", &cmd, &v1, &v2, &v3, &v4);
+		//printf("%c %f %f %f %f\n", cmd, v1, v2, v3, v4);
 		switch (cmd)
 		{
 		case 'v':
@@ -47,20 +51,37 @@ void readt()
 			vert[vid] = v3; vid++;
 			break;
 		case 'f':
-			face[fid] = v1; fid++;
-			face[fid] = v2; fid++;
-			face[fid] = v3; fid++;
+			face[fid] = (int)v1; fid++;
+			face[fid] = (int)v2; fid++;
+			face[fid] = (int)v3; fid++;
 			break;
 		default:
 			break;
 		}
 		
 	}
+	cmd=0;
 	fclose(pFile);
-}
 
-int main()
-{
-	readt();
+	glutInit(&argc,argv);
+	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize (250, 250);
+	glutInitWindowPosition (100, 100);
+
+	glutCreateWindow ("winlock");
+	glClearColor (0.0, 0.0, 0.0, 0.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+
+	GLuint idvtx=0;
+
+	glewInit();
+	glGenBuffers(1,&idvtx);
+	glBindBuffer(GL_ARRAY_BUFFER,idvtx);
+	glBufferData(GL_ARRAY_BUFFER,vid,&vert[0],GL_STATIC_DRAW);
+
+	delete [] vert;
+
 	return 0;
 }
