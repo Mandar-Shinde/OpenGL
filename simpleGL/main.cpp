@@ -11,7 +11,6 @@
 
 int main(int argc, char *argv[])
 {
-		char str[80];
 
 	char cmd;
 	float v1, v2, v3, v4;
