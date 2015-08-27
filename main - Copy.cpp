@@ -4,6 +4,7 @@
 #include <GL\freeglut.h>
 
 #include <fstream>
+#include <conio.h>
 #define EOL '\n'
 #define CAR_RETURN '\r'
 
@@ -80,7 +81,19 @@ int main(int argc, char *argv[])
 	glBindBuffer(GL_ARRAY_BUFFER,idvtx);
 	glBufferData(GL_ARRAY_BUFFER,vid,&vert[0],GL_STATIC_DRAW);
 
+	glVertexPointer(2, GL_FLOAT, sizeof(float)*3,vert);
+	glEnableClientState(GL_VERTEX_ARRAY);
+
 	delete [] vert;
 
+	glDrawArrays(GL_TRIANGLES, 0, vid);
+
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+
+	while (getch())
+	{
+
+	}
 	return 0;
 }

@@ -1,26 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL_1", "SDL_1\SDL_1.vcxproj", "{0E7FF1CF-43AA-4689-85D1-C91672614E30}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simpleGL", "simpleGL\simpleGL.vcxproj", "{A4F210BA-8C17-4E9D-B742-94E7F4B0F188}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GL_2_3DModel", "GL_2_3DModel\GL_2_3DModel.vcxproj", "{493A1407-9E24-4D35-902A-B8CAD71D7A7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0E7FF1CF-43AA-4689-85D1-C91672614E30}.Debug|x86.ActiveCfg = Debug|Win32
-		{0E7FF1CF-43AA-4689-85D1-C91672614E30}.Debug|x86.Build.0 = Debug|Win32
-		{0E7FF1CF-43AA-4689-85D1-C91672614E30}.Release|x86.ActiveCfg = Release|Win32
-		{0E7FF1CF-43AA-4689-85D1-C91672614E30}.Release|x86.Build.0 = Release|Win32
-		{A4F210BA-8C17-4E9D-B742-94E7F4B0F188}.Debug|x86.ActiveCfg = Debug|Win32
-		{A4F210BA-8C17-4E9D-B742-94E7F4B0F188}.Debug|x86.Build.0 = Debug|Win32
-		{A4F210BA-8C17-4E9D-B742-94E7F4B0F188}.Release|x86.ActiveCfg = Release|Win32
-		{A4F210BA-8C17-4E9D-B742-94E7F4B0F188}.Release|x86.Build.0 = Release|Win32
+		{493A1407-9E24-4D35-902A-B8CAD71D7A7A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{493A1407-9E24-4D35-902A-B8CAD71D7A7A}.Debug|Win32.Build.0 = Debug|Win32
+		{493A1407-9E24-4D35-902A-B8CAD71D7A7A}.Release|Win32.ActiveCfg = Release|Win32
+		{493A1407-9E24-4D35-902A-B8CAD71D7A7A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
