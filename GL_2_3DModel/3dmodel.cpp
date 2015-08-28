@@ -18,7 +18,7 @@ static void error_callback(int error, const char* description)
 }
 
 
-short keymode = 1;
+short keymode = 5;
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
@@ -73,16 +73,17 @@ int main(void)
 
 	GLfloat vert[] = { -0.6f, -0.4f, 0.f, 0.6f, -0.4f, 0.f, 0.f, 0.6f, 0.f };
 	GLfloat norm[] = { 0, 0, 1, 0, 1, 1, 1, 0, 1 };
-	GLfloat colo1[] = { 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-	GLfloat colo2[] = { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f };
+	GLfloat colo0[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+	GLfloat colo1[] = { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f };
+	GLfloat colo2[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 	GLfloat colo3[] = { 0.0f, 0.50f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.50f };
 
 	GLubyte indices[] = { 0, 1, 2 };
 
 	GLfloat collect[] = {
-		-0.6f, -0.4f, 0.f, 1, 0, 0, 0.1f, 0.1f, 0.1f,
-		0.6f, -0.4f, 0.f, 1, 1, 0, 0.1f, 0.1f, 0.1f,
-		0.f, 0.6f, 0.f, 1, 0, 0, 0.1f, 0.1f, 0.1f
+		-0.6f, -0.4f, 0.f, 1, 0, 0, 1.0f, 1.0f, 0.0f,
+		0.6f, -0.4f, 0.f, 1, 1, 0, 1.0f, 1.0f, 0.0f,
+		0.f, 0.6f, 0.f, 1, 0, 0, 1.0f, 1.0f, 0.0f
 	};
 
 
@@ -108,85 +109,60 @@ int main(void)
 		glLoadIdentity();
 		glRotatef((float)glfwGetTime() * 5.f, 0.f, 0.f, 1.f);
 
+
+		glEnableClientState(GL_NORMAL_ARRAY);
+		glEnableClientState(GL_COLOR_ARRAY);
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+
 		switch (keymode)
 		{
 		case 1:
-				glBegin(GL_TRIANGLES);
-				glColor3f(0.1f, 0.0f, 0.5f);
-				glNormal3f(0,0,1);
-				glVertex3f(-0.6f, -0.4f, 0.f);
-				glColor3f(0.0f, 0.9f, 0.2f);
-				glNormal3f(0,1,1);
-				glVertex3f(0.6f, -0.4f, 0.f);
-				glColor3f(0.7f, 0.1f, 0.0f);
-				glNormal3f(1,0,1);
-				glVertex3f(0.f, 0.6f, 0.f);
-				glEnd();
+			glBegin(GL_TRIANGLES);
+			glColor3f(0.1f, 0.0f, 0.5f);
+			glNormal3f(0, 0, 1);
+			glVertex3f(-0.6f, -0.4f, 0.f);
+			glColor3f(0.0f, 0.9f, 0.2f);
+			glNormal3f(0, 1, 1);
+			glVertex3f(0.6f, -0.4f, 0.f);
+			glColor3f(0.7f, 0.1f, 0.0f);
+			glNormal3f(1, 0, 1);
+			glVertex3f(0.f, 0.6f, 0.f);
+			glEnd();
 			break;
 		case 2:
-			glColor3f(0.0f, 0.0f, 1.0f);
-			//		glEnableClientState(GL_NORMAL_ARRAY);
-			//		glEnableClientState(GL_COLOR_ARRAY);
-			glEnableClientState(GL_VERTEX_ARRAY);
-			//		glNormalPointer(GL_FLOAT, 0, norm);
-			//		glColorPointer(3, GL_FLOAT, 0, colo);
+			glNormalPointer(GL_FLOAT, 0, norm);
+			glColorPointer(3, GL_FLOAT, 0, colo0);
 			glVertexPointer(3, GL_FLOAT, 0, vert);
 			glDrawArrays(GL_TRIANGLES, 0, 3);
-			glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-			//		glDisableClientState(GL_COLOR_ARRAY);
-			//		glDisableClientState(GL_NORMAL_ARRAY);
 			break;
 		case 3:
-			//// enable and specify pointers to vertex arrays
-			glColor3f(1.0f, 0.0f, 0.0f);
-			glEnableClientState(GL_NORMAL_ARRAY);
-			glEnableClientState(GL_COLOR_ARRAY);
-			glEnableClientState(GL_VERTEX_ARRAY);
 			glNormalPointer(GL_FLOAT, 0, norm);
 			glColorPointer(3, GL_FLOAT, 0, colo1);
 			glVertexPointer(3, GL_FLOAT, 0, vert);
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_BYTE, indices);
-			glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-			glDisableClientState(GL_COLOR_ARRAY);
-			glDisableClientState(GL_NORMAL_ARRAY);
 			break;
 		case 4:
-
-			  glEnableClientState(GL_NORMAL_ARRAY);
-			  glEnableClientState(GL_COLOR_ARRAY);
-			  glEnableClientState(GL_VERTEX_ARRAY);
-			  glNormalPointer(GL_FLOAT, 0, norm);
-			  glColorPointer(3, GL_FLOAT, 0, colo2);
-			  glVertexPointer(3, GL_FLOAT, 0, vert);			  
-			  glDrawRangeElements(GL_TRIANGLES, 0, 3, 9, GL_UNSIGNED_BYTE, indices);
-			  glDisableClientState(GL_VERTEX_ARRAY);  
-			  glDisableClientState(GL_COLOR_ARRAY);
-			  glDisableClientState(GL_NORMAL_ARRAY);
-
+			glNormalPointer(GL_FLOAT, 0, norm);
+			glColorPointer(3, GL_FLOAT, 0, colo2);
+			glVertexPointer(3, GL_FLOAT, 0, vert);
+			glDrawRangeElements(GL_TRIANGLES, 0, 3, 9, GL_UNSIGNED_BYTE, indices);
+			glFlush();
 			break;
 		case 5:			
-
 			glNormalPointer(GL_FLOAT, 9 * sizeof(GLfloat), collect + 3);
 			glColorPointer(3, GL_FLOAT, 9 * sizeof(GLfloat), collect + 6);
 			glVertexPointer(3, GL_FLOAT, 9 * sizeof(GLfloat), collect);
-
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_BYTE, indices);
-
-			glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-			glDisableClientState(GL_COLOR_ARRAY);
-			glDisableClientState(GL_NORMAL_ARRAY);
+			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_BYTE, indices);		
+			glFlush();
 			break;
 		case 6:
 			break;
 		}
 
-		
-
-
-
-
-
-
+		glDisableClientState(GL_VERTEX_ARRAY);  
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_NORMAL_ARRAY);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
