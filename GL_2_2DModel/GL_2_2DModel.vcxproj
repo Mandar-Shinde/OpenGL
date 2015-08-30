@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{493A1407-9E24-4D35-902A-B8CAD71D7A7A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GL_2_3DModel</RootNamespace>
+    <RootNamespace>GL_2_2DModel</RootNamespace>
     <ProjectName>GL_2_Triangle</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -83,7 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="3dmodel.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
